@@ -42,23 +42,27 @@ class Node
 
 end 
 
-def knight_moves(start, finish, queue = [[start]], distance = 0)
-  layer = queue.shift
-
+def knight_moves(start, finish, queue = [[start]])
   next_layer = []
-  layer.each do |coord|
-    return distance if coord == finish
-    node = Node.new(coord)
+  queue.each do |path|
+    coord = path[-1]
+    return path if coord == finish
 
-    if node.possible_moves.include?(finish) then
-       return distance + 1
+    node = Node.new(coord)
+    possible_moves = node.possible_moves
+    if possible_moves.include? finish then
+      return path.push(finish)
     else
-      next_layer.push(node.possible_moves)
+      possible_moves.each do |move|
+        new_path = path.dup
+        new_path.push(move)
+        next_layer.push(new_path)
+      end
     end
   end
 
   queue = next_layer
-  knight_moves(start, finish, queue, distance + 1)
+  knight_moves(start, finish, queue)
 end
 
 p knight_moves([3,3], [4,3]) # 3 == [[3,3],[4,5],[2,4][4,3]]
