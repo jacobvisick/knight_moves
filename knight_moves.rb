@@ -45,6 +45,13 @@ def knight_moves(start, finish, queue = [[start]])
   knight_moves(start, finish, queue)
 end
 
-p knight_moves([3,3], [4,3]) # 3 == [[3,3],[4,5],[2,4][4,3]]
-p knight_moves([0,0], [1,2]) # 1 == [[0,0],[1,2]]
-p knight_moves([3,3], [0,0]) # 2 == [[3,3],[1,2],[0,0]]
+def knight_moves_log(start, finish)
+  path = knight_moves(start, finish)
+  puts "You can go from #{start} to #{finish} in #{path.length} moves."
+  puts "Here is the path:"
+  path.each_with_index { |move, index| puts "#{index + 1}) #{move}" }
+end
+
+knight_moves_log([3,3], [4,3]) # 3 == [[3,3],[4,5],[2,4][4,3]]
+knight_moves_log([0,0], [1,2]) # 1 == [[0,0],[1,2]]
+knight_moves_log([3,3], [0,0]) # 2 == [[3,3],[1,2],[0,0]]
