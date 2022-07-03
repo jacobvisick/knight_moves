@@ -1,25 +1,5 @@
 # https://www.theodinproject.com/lessons/ruby-knights-travails
 # create a tree of potential moves for the knight, then search that tree for the shortest path to particular square
-#
-#    [can move] [can move]            [can move]    [can move]
-#      |          |                       |            |
-#      ==============[current space node]==============     ------[etc]
-#      |          |                       |            |    |
-#    [can move] [can move]            [can move]    [can move]--->
-#
-# BFS! DFS would be infinite loop (i.e. children refer to each other, so cannot explore all children first)
-# BFS = add all neighbors to queue, explore one at a time
-#
-#  potential_moves = [
-#    [x+1, y+2],
-#    [x-1, y+2],
-#    [x+2, y+1],
-#    [x+2, y-1],
-#    [x-2, y+1],
-#    [x-2, y-1],
-#    [x-1, y-2],
-#    [x+1, y-2]
-#  ]
 
 class Node
   attr_reader :coordinates, :possible_moves
